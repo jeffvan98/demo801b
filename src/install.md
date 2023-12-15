@@ -24,6 +24,8 @@ helm install demo801b demo801b -n <NAMESPACE>
 
 ## Notes
 
+- Prerequisites: ingress-nginx and oauth2-proxy must be installed (including supporting Entra Application) and configured before installing this application.
+
 - The report-reader is a web UI built with the assumption that it will be protected under the combination of ingress-nginx and oauth2-proxy.  When deployed, the report-reader should appear in the following structure:
 
 ```
