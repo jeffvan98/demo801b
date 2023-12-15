@@ -18,6 +18,8 @@ start.sh is the entrypoint for this image.  It runs jupyter, passing in notebook
 ## Build
 example: 
 
+```bash
 docker build -t report-writer:latest .
 docker tag report-writer:latest acr7c02.azurecr.io/report-writer:latest
 docker push acr7c02.azurecr.io/report-writer:latest
+```

@@ -1,0 +1,44 @@
+reportReader:
+  enabled: true
+  name: frontend4e5a
+  nodeSelector: 
+    role: usernp1
+  image: 
+    repository: acr7c02.azurecr.io/frontend
+    pullPolicy: IfNotPresent  
+    tag: "0.0.4"
+  applicationPrefix: "/cardiology"
+  applicationName: "Cardiology"
+  signinUri: "https://$host/auth/cardiology/start?rd=$escaped_request_uri"
+  authUri: "https://$host/auth/cardiology/auth"
+
+reportWriter:
+  enabled: true
+  name: backend4e5a
+  schedule: "*0 0 * * *"
+  nodeSelector: 
+    role: usernp2
+  image: 
+    repository: acr7c02.azurecr.io/report-writer
+    pullPolicy: IfNotPresent  
+    tag: "0.0.1"
+  keyVaultUrl: "https://vault7c02.vault.azure.net"
+  secretName: "mongo-connection"
+  databaseName: "PatientData"
+  collectionName: "Default"
+
+reportWriterServiceAccount:
+  enabled: true
+  name: report-writer-svc
+  clientId: "c0b29e29-18e8-4545-956f-9dafa3a7ee33"
+
+persistentVolumeClaim:
+  enabled: true
+  name: store7c02a-container03-claim
+
+persistentVolume:
+  enabled: true
+  name: store7c02a-container03
+  azureResourceGroup: 2023-12-04-RG-01
+  azureStorageAccount: store7c02a
+  azureBlobContainer: container03
