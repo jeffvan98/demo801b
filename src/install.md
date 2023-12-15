@@ -21,3 +21,11 @@ This will create all the application artifacts in Kubernetes.
 ```bash
 helm install demo801b demo801b -n <NAMESPACE>
 ```
+
+## Notes
+
+The report-writer is configured to run once per day at midnight.  You can run it on demand using the following technique:
+
+```bash
+kubectl create job --from=cronjob/report-writer <NEW-JOB-NAME> -n <NAMESPACE>
+```
