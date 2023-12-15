@@ -1,16 +1,16 @@
 reportReader:
   enabled: true
-  name: frontend4e5a
+  name: report-reader
   nodeSelector: 
     role: usernp1
   image: 
-    repository: acr7c02.azurecr.io/frontend
+    repository: acr7c02.azurecr.io/report-reader
     pullPolicy: IfNotPresent  
-    tag: "0.0.4"
-  applicationPrefix: "/cardiology"
-  applicationName: "Cardiology"
-  signinUri: "https://$host/auth/cardiology/start?rd=$escaped_request_uri"
-  authUri: "https://$host/auth/cardiology/auth"
+    tag: "0.0.1"
+  applicationPrefix: "/neurology"
+  applicationName: "Neurology"
+  signinUri: "https://$host/auth/neurology/start?rd=$escaped_request_uri"
+  authUri: "https://$host/auth/neurology/auth"
 
 reportWriter:
   enabled: true
@@ -28,7 +28,7 @@ reportWriter:
   collectionName: "Default"
 
 reportWriterServiceAccount:
-  enabled: false
+  enabled: true
   name: neurologysvc
   clientId: "c1496868-d258-4cae-93b6-a3e00b70d60e"
 
