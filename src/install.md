@@ -24,7 +24,15 @@ helm install demo801b demo801b -n <NAMESPACE>
 
 ## Notes
 
-The report-writer is configured to run once per day at midnight.  You can run it on demand using the following technique:
+- The report-reader is a web UI built with the assumption that it will be protected under the combination of ingress-nginx and oauth2-proxy.  When deployed, the report-reader should appear in the following structure:
+
+```
+ROOT \
+   - auth-neurology <- oauth2-proxy deployed here
+   - neurology <- report-reader deployed here
+```
+
+- The report-writer is configured to run once per day at midnight.  You can run it on demand using the following technique:
 
 ```bash
 kubectl create job --from=cronjob/report-writer <NEW-JOB-NAME> -n <NAMESPACE>
