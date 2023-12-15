@@ -14,8 +14,8 @@ reportReader:
 
 reportWriter:
   enabled: true
-  name: backend4e5a
-  schedule: "*0 0 * * *"
+  name: report-writer
+  schedule: "0 0 * * *"
   nodeSelector: 
     role: usernp2
   image: 
@@ -28,9 +28,9 @@ reportWriter:
   collectionName: "Default"
 
 reportWriterServiceAccount:
-  enabled: true
-  name: report-writer-svc
-  clientId: "c0b29e29-18e8-4545-956f-9dafa3a7ee33"
+  enabled: false
+  name: neurologysvc
+  clientId: "c1496868-d258-4cae-93b6-a3e00b70d60e"
 
 persistentVolumeClaim:
   enabled: true

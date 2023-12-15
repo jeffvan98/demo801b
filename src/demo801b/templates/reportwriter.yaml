@@ -9,12 +9,16 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            azure.workload.identity/use: "true"
         spec:
           {{- with .Values.reportWriter.nodeSelector }}
           nodeSelector:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           restartPolicy: Never
+          serviceAccountName: {{ .Values.reportWriterServiceAccount.name }}
           containers:
             - name: {{ .Values.reportWriter.name }}
               image: "{{ .Values.reportWriter.image.repository }}:{{ .Values.reportWriter.image.tag | default .Chart.AppVersion }}"
@@ -35,5 +39,5 @@ spec:
           volumes:
           - name: storage
             persistentVolumeClaim:
-              claimName:  {{ .Values.reportWriter.name }}
+              claimName:  {{ .Values.persistentVolumeClaim.name }}
 {{- end -}}       
